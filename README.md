@@ -3,7 +3,7 @@
 [![Twitter: @fromkk](https://img.shields.io/badge/contact-@fromkk-00801D.svg?style=flat)](https://twitter.com/fromkk)
 [![Swift 4.2](https://img.shields.io/badge/Swift-4.2-F16D39.svg?style=flat)](https://developer.apple.com/swift/)
 ![Platforms](https://img.shields.io/badge/platform-macOS-lightgrey.svg)
-[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/fromkk/Templates/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/fromkk/Templates/master/LICENSE.md)
 
 ## What
 
