@@ -16,6 +16,12 @@ Usage: templates remove --key ${KEY}
 Options:
 --key Key string
 
+# Show
+Usage: templates show --key ${KEY}
+
+Options:
+--key Key string(optional)
+
 # Convert
 Usage: templates convert --source ${TEMPLATE_DIR} --output ${OUTPUT_DIR} --prefix ${PREFIX}
 
@@ -63,6 +69,22 @@ func main() {
                 return
         }
         configure.remove(key)
+    case .show:
+        let json = configure.fetch()
+        if let key = arguments["key"], let value = json[key] {
+            print(value)
+        } else {
+            do {
+                let data = try JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted])
+                guard let string = String(data: data, encoding: .utf8) else {
+                    print("json string get failed")
+                    return
+                }
+                print(string)
+            } catch {
+                print("data get failed with wrror: \(error)")
+            }
+        }
     case .convert:
         guard let source = arguments["source"],
             let output = arguments["output"],

@@ -10,5 +10,6 @@ import Foundation
 public enum Commands: String {
     case set
     case remove
+    case show
     case convert
 }
