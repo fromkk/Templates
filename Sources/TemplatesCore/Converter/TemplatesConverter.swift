@@ -5,16 +5,16 @@ public enum TemplatesError: Error {
     case jsonConvertFailed
 }
 
-public final class Templates {
+public final class TemplatesConverter {
     let source: String
     let output: String
     let prefix: String
-    let jsonString: String
-    public init(source: String, output: String, prefix: String, jsonString: String) {
+    let json: [String: String]
+    public init(source: String, output: String, prefix: String, json: [String: String]) {
         self.source = source
         self.output = output
         self.prefix = prefix
-        self.jsonString = jsonString
+        self.json = json
     }
     
     public func perform() throws {
@@ -37,20 +37,6 @@ public final class Templates {
     }
     
     func export(_ sourceFiles: [String]) throws {
-        guard let data = self.jsonString.data(using: .utf8) else {
-            throw TemplatesError.dataGetFailed
-        }
-        
-        let json: [String: String]
-        do {
-            guard let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] else {
-                throw TemplatesError.jsonConvertFailed
-            }
-            json = jsonObject
-        } catch {
-            throw error
-        }
-        
         let source = self.source.hasPrefix("/") ? self.source : URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent(self.source).path
         let now = Date()
         for i in 0..<sourceFiles.count {
